@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Control</title>
+   </head>
+   <body style="font-size: 5em; font-family: sans-serif; text-align: center;">
+      <div>Output</div>
+      <select style="font-size: 1em" id="output">
+         <option>1</option>
+         <option>2</option>
+         <option>3</option>
+         <option>4</option>
+         <option>5</option>
+         <option>6</option>
+         <option>7</option>
+         <option>8</option>
+      </select>
+      <div>Input</div>
+      <select style="font-size: 1em" id="input">
+         <option>1</option>
+         <option>2</option>
+         <option>3</option>
+         <option>4</option>
+         <option>5</option>
+         <option>6</option>
+         <option>7</option>
+         <option>8</option>
+      </select>
+      <br><br>
+      <button style="font-size: 1em" onclick="sendChange()">Change</button>
+      <script>
+         function sendChange() {
+         	var i = parseInt(document.getElementById('input').value);
+         	var o = parseInt(document.getElementById('output').value);
+         	fetch("/video", { method: 'PUT', body: JSON.stringify({ Input: i, Output: o }) });
+         }
+      </script>
+   </body>
+</html>

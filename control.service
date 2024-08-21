@@ -1,0 +1,10 @@
+[Service]
+ExecStart=/bin/bash /opt/control/start.sh
+WorkingDirectory=/opt/control
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=control
+
+[Install]
+WantedBy=multi-user.target
