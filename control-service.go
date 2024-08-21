@@ -38,12 +38,12 @@ func main() {
 		fmt.Printf("Found port: %v\n", port)
 	}
 	mode := &serial.Mode{}
-	tmpport, err := serial.Open(ports[0],mode)
-	port = tmpport
+	port, err = serial.Open(ports[0],mode)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(2)
 	}
+	defer port.Close()
 
 	router := gin.Default()
 	router.LoadHTMLFiles("index.html")
