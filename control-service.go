@@ -19,7 +19,14 @@ func putOutput(c *gin.Context) {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(request)
+	if request.Output < 1 || request.Output > 8 {
+		c.IndentedJSON(http.StatusBadRequest, "Output must be a value between 1-8")
+		return
+	}
+	if request.Input < 1 || request.Input > 8 {
+		c.IndentedJSON(http.StatusBadRequest, "Input must be a a value between 1-8")
+		return
+	}
 	command := fmt.Sprintf("V%d%dD\r", request.Output, request.Input);
 	port.Write([]byte(command))
 	c.IndentedJSON(http.StatusOK, "OK")
